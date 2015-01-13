@@ -848,6 +848,12 @@ namespace KerbalConfigEditor
             buttonNewNode.Enabled = true;
             buttonNewValue.Enabled = true;
 
+            // And the New, Open, Save, and Save As options.
+            newToolStripMenuItem.Enabled = true;
+            openToolStripMenuItem.Enabled = true;
+            saveToolStripMenuItem.Enabled = true;
+            saveAsToolStripMenuItem.Enabled = true;
+
             // Change the form's title to reflect the file's name and location.
             this.Text = "Kerbal Config Editor - " + openConfigDialog.FileName.Substring(0, 10) + "..." + openConfigDialog.FileName.Substring(openConfigDialog.FileName.LastIndexOf('\\') + 1);
 
