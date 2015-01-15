@@ -103,6 +103,12 @@ namespace KerbalConfigEditor
             // Read the file into a string array.
             string[] linesFromFile = File.ReadAllLines(fullFilePath);
 
+            // Is the file empty?
+            if (linesFromFile.Length == 0 || (linesFromFile.Length == 1 && linesFromFile[0] == ""))
+            {
+                throw new FormatException("The file is empty!");
+            }
+
             // Parse the array of read lines.
             return ParseConfigLines(linesFromFile, worker, 0, linesFromFile.Length);
         }
@@ -129,7 +135,7 @@ namespace KerbalConfigEditor
                 {
                     // We might have found a node. See if there is a name on the previous line.
                     string nodeName = configLines[i - 1].Trim();
-                    if (alphanumeric.IsMatch(nodeName))
+                    if (!nodeName.Contains(' '))
                     {
                         // The node has a name so far. Look for closing bracket.
                         int levels = 0;
@@ -162,7 +168,7 @@ namespace KerbalConfigEditor
                         if (closingLine == -1)
                         {
                             // Throw a FormatException, which will be handled by the method given to the BackgroundWorker's TaskCompeted event subscriber.
-                            throw new FormatException("Line " + i.ToString() + ": Node name \"" + nodeName + "\" does not have a matching closing bracket!");
+                            throw new FormatException("Line " + (current + i).ToString() + ": Node name \"" + nodeName + "\" does not have a matching closing bracket!");
                         }
 
                         // Otherwise, we can begin parsing the found child node and then applying the name found to it.
@@ -185,7 +191,7 @@ namespace KerbalConfigEditor
                     else
                     {
                         // Throw a FormatException, which will be handled by the method given to the BackgroundWorker's TaskCompeted event subscriber.
-                        throw new FormatException("Line " + (i + 1).ToString() + ": Node name \"" + nodeName + "\" is not alphanumeric!");
+                        throw new FormatException("Line " + (current + i + 1).ToString() + ": Node name \"" + nodeName + "\" has a space!");
                     }
                 }
             }

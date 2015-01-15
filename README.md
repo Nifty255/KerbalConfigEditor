@@ -1,5 +1,5 @@
 ﻿Kerbal Config Editor
-v1.0.1 Release
+v1.0.2 Release
 
 Kerbal Config Editor (KCE) is an easy to use tool designed to allow modders of Kerbal Space Program to easily and quickly alter or even create KSP Config Files.
 
@@ -34,6 +34,11 @@ Kerbal Config Editor allows users and modders to easily read, edit, and even cre
 - DOES NOT currently support comments. This is planned for a future release.
 
 CHANGELOG:
+
+v1.0.2:
+- Allowed opening of game save (*.sfs) files.
+- Allowed opening of files with node names that may not be completely alphanumeric.
+- Improved file open error handling.
 
 v1.0.1:
 - Fixed menu items not reactivating.

@@ -817,7 +817,7 @@ namespace KerbalConfigEditor
             bw.RunWorkerCompleted += (sender1, args) =>
             {
                 if (args.Error != null)
-                    System.Windows.Forms.MessageBox.Show(args.Error.ToString());
+                    System.Windows.Forms.MessageBox.Show("Error: Couldn't read the file.\n\n" + args.Error.Message);
 
                 FinishOpeningFile();
             };

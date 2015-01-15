@@ -111,7 +111,7 @@
 
 copy /Y "D:\Documents\GitHub\KerbalConfigEditor\Source\Kerbal Config Editor\README.txt" "D:\Documents\GitHub\KerbalConfigEditor\README.md"
 
-copy /Y "D:\Documents\GitHub\KerbalConfigEditor\Source\Kerbal Config Editor\README.txt" "D:\Documents\GitHub\KerbalConfigEditor\Kerbal Config Editor\README.txt"</PostBuildEvent>
+copy /Y "D:\Documents\GitHub\KerbalConfigEditor\Source\Kerbal Config Editor\README.txt" "D:\Documents\GitHub\KerbalConfigEditor\Kerbal Config Editor\KCE README.txt"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
