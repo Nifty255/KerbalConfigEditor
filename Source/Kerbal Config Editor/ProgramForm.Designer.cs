@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System.IO;
 
 namespace KerbalConfigEditor
 {
@@ -389,14 +390,14 @@ namespace KerbalConfigEditor
             this.openConfigDialog.DefaultExt = "cfg";
             this.openConfigDialog.FileName = "config.cfg";
             this.openConfigDialog.Filter = "KSP Files|*.cfg;*.sfs|KSP Config Files|*.cfg|KSP Save Files|*.sfs";
-            this.openConfigDialog.InitialDirectory = "C:\\Users";
+            this.openConfigDialog.InitialDirectory = Directory.GetCurrentDirectory();
             // 
             // saveConfigDialog
             // 
             this.saveConfigDialog.DefaultExt = "cfg";
             this.saveConfigDialog.FileName = "config.cfg";
             this.saveConfigDialog.Filter = "KSP Files|*.cfg;*.sfs|KSP Config Files|*.cfg|KSP Save Files|*.sfs";
-            this.saveConfigDialog.InitialDirectory = "C:\\Users";
+            this.saveConfigDialog.InitialDirectory = Directory.GetCurrentDirectory();
             // 
             // cheatTablePanel
             // 
