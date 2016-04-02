@@ -65,9 +65,8 @@ namespace KerbalConfigEditor
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripSavedLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripValsSavedLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripFileSavedLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainLayoutPanel.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.buttonTablePanel.SuspendLayout();
@@ -284,7 +283,7 @@ namespace KerbalConfigEditor
             this.valuesTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.valuesTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.valuesTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.valuesTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.valuesTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.valuesTable.Location = new System.Drawing.Point(3, 109);
             this.valuesTable.Name = "valuesTable";
             this.valuesTable.RowCount = 1;
@@ -390,14 +389,14 @@ namespace KerbalConfigEditor
             this.openConfigDialog.DefaultExt = "cfg";
             this.openConfigDialog.FileName = "config.cfg";
             this.openConfigDialog.Filter = "KSP Files|*.cfg;*.sfs|KSP Config Files|*.cfg|KSP Save Files|*.sfs";
-            this.openConfigDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            this.openConfigDialog.InitialDirectory = "C:\\Windows\\system32";
             // 
             // saveConfigDialog
             // 
             this.saveConfigDialog.DefaultExt = "cfg";
             this.saveConfigDialog.FileName = "config.cfg";
             this.saveConfigDialog.Filter = "KSP Files|*.cfg;*.sfs|KSP Config Files|*.cfg|KSP Save Files|*.sfs";
-            this.saveConfigDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            this.saveConfigDialog.InitialDirectory = "C:\\Windows\\system32";
             // 
             // cheatTablePanel
             // 
@@ -420,7 +419,8 @@ namespace KerbalConfigEditor
             this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressLabel,
             this.toolStripProgressBar,
-            this.toolStripSavedLabel});
+            this.toolStripValsSavedLabel,
+            this.toolStripFileSavedLabel});
             this.mainStatusStrip.Location = new System.Drawing.Point(0, 340);
             this.mainStatusStrip.Name = "mainStatusStrip";
             this.mainStatusStrip.Size = new System.Drawing.Size(784, 22);
@@ -440,29 +440,19 @@ namespace KerbalConfigEditor
             this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
             this.toolStripProgressBar.Visible = false;
             // 
-            // toolStripSavedLabel
+            // toolStripValsSavedLabel
             // 
-            this.toolStripSavedLabel.Name = "toolStripSavedLabel";
-            this.toolStripSavedLabel.Size = new System.Drawing.Size(78, 17);
-            this.toolStripSavedLabel.Text = "Values Saved!";
-            this.toolStripSavedLabel.Visible = false;
+            this.toolStripValsSavedLabel.Name = "toolStripValsSavedLabel";
+            this.toolStripValsSavedLabel.Size = new System.Drawing.Size(77, 17);
+            this.toolStripValsSavedLabel.Text = "Values Saved!";
+            this.toolStripValsSavedLabel.Visible = false;
             // 
-            // printToolStripMenuItem
+            // toolStripFileSavedLabel
             // 
-            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
-            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            this.printToolStripMenuItem.Text = "&Print";
-            // 
-            // printPreviewToolStripMenuItem
-            // 
-            this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
-            this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
+            this.toolStripFileSavedLabel.Name = "toolStripFileSavedLabel";
+            this.toolStripFileSavedLabel.Size = new System.Drawing.Size(62, 17);
+            this.toolStripFileSavedLabel.Text = "File Saved!";
+            this.toolStripFileSavedLabel.Visible = false;
             // 
             // ProgramForm
             // 
@@ -527,11 +517,10 @@ namespace KerbalConfigEditor
         private ToolStripProgressBar toolStripProgressBar;
         private Label noValsLabel;
         private Button saveValuesButton;
-        private ToolStripStatusLabel toolStripSavedLabel;
+        private ToolStripStatusLabel toolStripValsSavedLabel;
         private ToolStripMenuItem helpToolStripMenuItem;
-        private ToolStripMenuItem printToolStripMenuItem;
-        private ToolStripMenuItem printPreviewToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripStatusLabel toolStripFileSavedLabel;
     }
 }
 

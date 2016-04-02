@@ -18,7 +18,7 @@ namespace KerbalConfigEditor
         {
             // Validate correct install.
 #if (!DEBUG)
-            if (!File.Exists(Directory.GetCurrentDirectory() + "\\KSP.exe"))
+            if (!File.Exists(Directory.GetCurrentDirectory() + "\\KSP.exe".Replace('\\', Path.DirectorySeparatorChar)))
             {
                 System.Windows.Forms.MessageBox.Show("Error: This program must be installed in your KSP install directory.", "Error 404: KSP Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -26,9 +26,9 @@ namespace KerbalConfigEditor
 #endif
 
             // Create Autosave folder if it doesn't exist.
-            if (!Directory.Exists(Directory.GetCurrentDirectory() + "\\KCE_Data\\Autosave"))
+            if (!Directory.Exists(Directory.GetCurrentDirectory() + "\\KCE_Data\\Autosave".Replace('\\', Path.DirectorySeparatorChar)))
             {
-                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\KCE_Data\\Autosave");
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\KCE_Data\\Autosave".Replace('\\', Path.DirectorySeparatorChar));
             }
 
             // Set the Assembly Handler.
@@ -59,7 +59,7 @@ namespace KerbalConfigEditor
                 if (strAssmbName.FullName.Substring(0, strAssmbName.FullName.IndexOf(",")) == args.Name.Substring(0, args.Name.IndexOf(",")))
                 {
                     // Build the path of the assembly from where it has to be loaded.				
-                    strTempAssmbPath = Directory.GetCurrentDirectory() + "\\KSP_Data\\Managed\\" + args.Name.Substring(0, args.Name.IndexOf(",")) + ".dll";
+                    strTempAssmbPath = Directory.GetCurrentDirectory() + "\\KSP_Data\\Managed\\".Replace('\\', Path.DirectorySeparatorChar) + args.Name.Substring(0, args.Name.IndexOf(",")) + ".dll";
                     break;
                 }
 

@@ -41,7 +41,7 @@ namespace KerbalConfigEditor
         private static int cfgIncrement = 0;
 
         // The path used to check for and save autosaved files.
-        private string autosavePath = Directory.GetCurrentDirectory() + "\\KCE_Data\\Autosave\\autosave.cfg";
+        private string autosavePath = Directory.GetCurrentDirectory() + "\\KCE_Data\\Autosave\\autosave.cfg".Replace('\\', Path.DirectorySeparatorChar);
         #endregion
 
         #region Form
@@ -54,6 +54,8 @@ namespace KerbalConfigEditor
         {
             // Initialize the form.
             InitializeComponent();
+            openConfigDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            saveConfigDialog.InitialDirectory = Directory.GetCurrentDirectory();
         }
 
         /// <summary>
@@ -261,6 +263,9 @@ namespace KerbalConfigEditor
                 // If the code reaches this point without success, then the user
                 // canceled and there are still unsaved changes.
                 changesUnsaved = !success;
+
+                // Show the File Saved status label for 3 seconds.
+                FileSaved();
             }
         }
 
@@ -303,6 +308,9 @@ namespace KerbalConfigEditor
                     // there are still unsaved changes.
                     changesUnsaved = !success;
                     currentIsNew = changesUnsaved;
+
+                    // Show the File Saved status label for 3 seconds.
+                    FileSaved();
                 }
             }
             else
@@ -571,7 +579,7 @@ namespace KerbalConfigEditor
             foreach(Component c in valuesTable.Controls)
             {
                 // If c's type is of TextBox,
-                if (c.GetType() == typeof(TextBox))
+                if (c.GetType().ToString() == typeof(TextBox).ToString())
                 {
                     // Cast it into a text box.
                     TextBox field = (TextBox)c;
@@ -612,6 +620,9 @@ namespace KerbalConfigEditor
                 }
             }
 
+            // Sets valuesUnsaved to false, since the user just saved them.
+            valuesUnsaved = false;
+
             // Call ValuesSaved, which shows the status bar indicator for a short time.
             ValuesSaved();
         }
@@ -622,11 +633,24 @@ namespace KerbalConfigEditor
         private async void ValuesSaved()
         {
             // Set Visible to true.
-            toolStripSavedLabel.Visible = true;
+            toolStripValsSavedLabel.Visible = true;
             // Wait 3 seconds.
             await Task.Delay(3000);
             // Set Visible to false.
-            toolStripSavedLabel.Visible = false;
+            toolStripValsSavedLabel.Visible = false;
+        }
+
+        /// <summary>
+        /// Shows the "File Saved" status bar indicator for 3 seconds (3000 milliseconds), and then hide it.
+        /// </summary>
+        private async void FileSaved()
+        {
+            // Set Visible to true.
+            toolStripFileSavedLabel.Visible = true;
+            // Wait 3 seconds.
+            await Task.Delay(3000);
+            // Set Visible to false.
+            toolStripFileSavedLabel.Visible = false;
         }
 
         /// <summary>
@@ -855,7 +879,7 @@ namespace KerbalConfigEditor
             saveAsToolStripMenuItem.Enabled = true;
 
             // Change the form's title to reflect the file's name and location.
-            this.Text = "Kerbal Config Editor - " + openConfigDialog.FileName.Substring(0, 10) + "..." + openConfigDialog.FileName.Substring(openConfigDialog.FileName.LastIndexOf('\\') + 1);
+            this.Text = "Kerbal Config Editor - " + openConfigDialog.FileName.Substring(0, 10) + "..." + openConfigDialog.FileName.Substring(openConfigDialog.FileName.LastIndexOf(Path.DirectorySeparatorChar) + 1);
 
             // Start opening the UI up for interaction again.
             toolStripProgressBar.Value = 100;
